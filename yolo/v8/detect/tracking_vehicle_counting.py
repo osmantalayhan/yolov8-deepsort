@@ -15,11 +15,33 @@ from ultralytics.yolo.utils import DEFAULT_CONFIG, ROOT, ops
 from ultralytics.yolo.utils.checks import check_imgsz
 from ultralytics.yolo.utils.plotting import Annotator, colors, save_one_box
 
-import cv2
 from deep_sort_pytorch.utils.parser import get_config
 from deep_sort_pytorch.deep_sort import DeepSort
+from ultralytics.nn.tasks import DetectionModel
+
 from collections import deque
 import numpy as np
+import torch
+from ultralytics.nn.tasks import DetectionModel
+from torch.nn import Sequential
+from ultralytics.nn.modules import Conv
+import os
+os.environ['TORCH_LOAD_WEIGHTS_ONLY'] = 'False'
+
+torch.serialization.add_safe_globals([
+    DetectionModel,
+    Conv,
+    torch.nn.Conv2d,
+    torch.nn.BatchNorm2d,
+    torch.nn.ReLU,
+    torch.nn.MaxPool2d,
+    torch.nn.ModuleList,
+])
+
+# PyTorch'a DetectionModel'ü güvenilir listeye ekle
+torch.serialization.add_safe_globals([DetectionModel])
+
+
 palette = (2 ** 11 - 1, 2 ** 15 - 1, 2 ** 20 - 1)
 data_deque = {}
 
