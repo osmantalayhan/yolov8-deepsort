@@ -51,5 +51,13 @@ python tracking_vehicle_counting.py model=yolov8l.pt source="test.mp4" show=True
 
 
 
+This project is based on YOLOv8-Object-Detection-with-DeepSORT-Tracking by MuhammadMoinFaisal.
+I've fixed compatibility issues and improved the codebase for modern PyTorch versions.
+What I Fixed/Improved:
 
-If you find my videos useful,  I would love your support on Pyresearch: https://www.youtube.com/c/Pyresearch
+- Fixed PyTorch 2.8+ compatibility issues - Resolved weights_only parameter conflicts
+- Resolved torch.load weights_only parameter conflicts - Added proper parameter handling
+- Updated deprecated package warnings - Fixed pkg_resources deprecation warnings
+- Added proper error handling - Improved user experience with better error messages
+- Environment compatibility - Ensured compatibility with Python 3.13 and latest dependencies
+- Documentation improvements - Added clear setup and troubleshooting instructions
